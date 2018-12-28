@@ -1,0 +1,46 @@
+select {
+    padding: 9px;
+    border: solid 1px #0077B0;
+    outline: 0;
+    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, rgba(35, 12, 60, 0.07)), to(#FFFFFF));
+    background: -moz-linear-gradient(top, #FFFFFF, #C6ECFF 1px, #FFFFFF 25px);
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+
+}
+input {
+    padding: 9px;
+    border: solid 1px #0077B0;
+    outline: 0;
+    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, rgba(35, 12, 60, 0.07)), to(#FFFFFF));
+    background: -moz-linear-gradient(top, #FFFFFF, #C6ECFF 1px, #FFFFFF 25px);
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+
+}
+
+textarea {
+    width: 600px;
+    height: 120px;
+    border: 1px solid #0077B0;
+    padding: 5px;
+    font-family: Tahoma, sans-serif;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+}
+.ui-dialog-title{
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+}
+
+
+.jtable-input-label{
+    color: black;
+    font-weight: bold;
+}
+#AddRecordDialogSaveButton {
+    background-color: #03a9f4;
+}

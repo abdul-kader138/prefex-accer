@@ -1,0 +1,61 @@
+ .jtable-title-text {
+    display:none;
+ }
+div.jtable-main-container div.jtable-bottom-panel .jtable-page-list {
+  display: inline-block;
+}
+div.jtable-main-container div.jtable-bottom-panel .jtable-page-list .jtable-page-number,
+div.jtable-main-container div.jtable-bottom-panel .jtable-page-list .jtable-page-number-space,
+div.jtable-main-container div.jtable-bottom-panel .jtable-page-list .jtable-page-number-first,
+div.jtable-main-container div.jtable-bottom-panel .jtable-page-list .jtable-page-number-last,
+div.jtable-main-container div.jtable-bottom-panel .jtable-page-list .jtable-page-number-previous,
+div.jtable-main-container div.jtable-bottom-panel .jtable-page-list .jtable-page-number-next,
+div.jtable-main-container div.jtable-bottom-panel .jtable-page-list .jtable-page-number-active {
+  padding: 2px 5px;
+  display: inline-block;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  padding:10px;
+}
+div.jtable-main-container div.jtable-bottom-panel .jtable-page-list .jtable-page-number-space,
+div.jtable-main-container div.jtable-bottom-panel .jtable-page-list .jtable-page-number-active {
+  cursor: default;
+  border: 1px solid #ddd;
+  padding:10px;
+}
+div.jtable-main-container div.jtable-bottom-panel .jtable-page-list .jtable-page-info {
+  display: inline-block;
+  margin-left: 5px;
+  padding:10px;
+  border: 1px solid #ddd;
+}
+.margin-bottom-15px{
+  margin-bottom:15px;
+}
+.margin-5px {
+  margin:5px;
+}
+.margin-top-15px{
+  margin-top:15px;
+}
+
+.ui-widget-header {
+    border: 1px solid #FBFBFB;
+    background: #FBFBFB ;
+    color: #777; 
+    border-radius: 10px 10px 0 0;
+}
+.ui-widget-content {
+    background: #fff;
+    color: #616161;
+}
+.jtable-input-field-container {
+    padding:5px 0px;
+}
+.jtable-input-field-container  .jtable-input input,
+.jtable-input-field-container  .jtable-input select,
+.jtable-input-field-container  .jtable-input text-area,
+.jtable-input-field-container  .jtable-input textarea
+{
+    width:100%;
+}
