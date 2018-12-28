@@ -1757,7 +1757,6 @@ $(function() {
 
     table_tasks = $('.table-tasks');
     if (table_tasks.length) {
-        debugger;
         var TasksServerParams = {},
             Tasks_Filters;
         Tasks_Filters = $('._hidden_inputs._filters._tasks_filters input');
