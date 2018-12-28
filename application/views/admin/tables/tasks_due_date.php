@@ -20,7 +20,7 @@ $aColumns = [
 $sIndexColumn = 'id';
 $sTable       = 'tblstafftasks';
 
-$where = [''];
+$where = [];
 $join  = [];
 
 include_once(APPPATH . 'views/admin/tables/includes/tasks_filter.php');

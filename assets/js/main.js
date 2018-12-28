@@ -1755,36 +1755,9 @@ $(function() {
         }
     }
 
-    // table_tasks = $('.table-tasks-due-date');
-    // console.log(table_tasks.length);
-    // if (table_tasks.length) {
-    //     var TasksServerParams = {},
-    //         Tasks_Filters;
-    //     Tasks_Filters = $('._hidden_inputs._filters._tasks_filters input');
-    //     $.each(Tasks_Filters, function () {
-    //         TasksServerParams[$(this).attr('name')] = '[name="' + $(this).attr('name') + '"]';
-    //     });
-    //
-    //     // Tasks not sortable
-    //     var tasksTableNotSortable = [0]; // bulk actions
-    //     var tasksTableURL = admin_url + 'tasks/table_due_date';
-    //
-    //     if ($("body").hasClass('due-date-page')) {
-    //         tasksTableURL += '?bulk_actions=true';
-    //     }
-    //
-    //     _table_api = initDataTable(table_tasks, tasksTableURL, tasksTableNotSortable, tasksTableNotSortable, TasksServerParams, [table_tasks.find('th.duedate').index(), 'asc']);
-    //
-    //     if (_table_api && $("body").hasClass('dashboard')) {
-    //         _table_api.column(5).visible(false, false)
-    //             .column(6).visible(false, false)
-    //             .columns.adjust();
-    //     }
-    // }
-
-
     table_tasks = $('.table-tasks');
     if (table_tasks.length) {
+        debugger;
         var TasksServerParams = {},
             Tasks_Filters;
         Tasks_Filters = $('._hidden_inputs._filters._tasks_filters input');
@@ -1794,7 +1767,7 @@ $(function() {
 
         // Tasks not sortable
         var tasksTableNotSortable = [0]; // bulk actions
-        var tasksTableURL = admin_url + 'tasks/table1';
+        var tasksTableURL = admin_url + 'tasks/table';
 
         if ($("body").hasClass('tasks-page')) {
             tasksTableURL += '?bulk_actions=true';
@@ -1808,7 +1781,6 @@ $(function() {
                 .columns.adjust();
         }
     }
-
 
     // Send file modal populate the hidden files when is shown
     $('#send_file').on('show.bs.modal', function(e) {

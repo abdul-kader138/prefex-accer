@@ -32,7 +32,7 @@
 <script src="<?php echo base_url('assets/plugins/fullcalendar/locale/'.$locale.'.js'); ?>"></script>
 <?php } ?>
 <?php } ?>
-<!--<script src="--><?php //echo base_url('assets/js/main.js'); ?><!--"></script>-->
+<!--<script src="--><?php //echo base_url('assets/js/ttt.js'); ?><!--"></script>-->
 <?php echo app_script('assets/js','main.js'); ?>
 <?php
 /**
