@@ -2606,6 +2606,7 @@ $lang['settings_calendar_color']                = '%s Color';
 $lang['settings_calendar_colors_heading']       = 'Styling';
 $lang['reminder']                               = 'Reminder';
 $lang['back_to_tasks_list']                     = 'Back to tasks list';
+$lang['back_to_due_date_list']                  = 'Back to due date list';
 $lang['copy_task_confirm']                      = 'Confirm';
 $lang['changing_items_affect_warning']          = 'Changing item info won\'t affect on the created invoices/estimates/proposals.';
 $lang['tax_is_used_in_expenses_warning']        = 'You can\'t update this tax because the tax is used by expenses transactions.';

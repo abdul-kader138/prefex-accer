@@ -243,7 +243,7 @@ class Tasks extends Admin_controller
                     $this->db->where('(id IN (SELECT taskid FROM tblstafftaskassignees WHERE staffid=' . $staff_id . '))');
                 }
             }
-
+            $this->db->where('duedate_one', 0);
             if ($status) {
                 $this->db->where('status', $status);
             }
@@ -303,7 +303,7 @@ class Tasks extends Admin_controller
         if ($this->input->post()) {
             $data                = $this->input->post();
             $data['description'] = $this->input->post('description', false);
-            $data['duedate_one'] = 0;
+            if(!$id) $data['duedate_one'] = 0;
             if ($id == '') {
                 if (!has_permission('tasks', '', 'create')) {
                     header('HTTP/1.0 400 Bad error');
@@ -1052,7 +1052,7 @@ class Tasks extends Admin_controller
 
         if ($this->session->userdata('tasks_kanban_view') == 'true') {
             $data['switch_kanban'] = true;
-            $data['bodyclass']     = 'tasks-page kan-ban-body';
+            $data['bodyclass']     = 'due-date-page kan-ban-body';
         }
 
         $data['title'] = _l('tasks');
@@ -1161,5 +1161,129 @@ class Tasks extends Admin_controller
         $data['id']    = $id;
         $data['title'] = $title;
         $this->load->view('admin/tasks/task_due_date', $data);
+    }
+
+    public function detailed_overview_due_date()
+    {
+        $overview = [];
+
+        $has_permission_create = has_permission('tasks', '', 'create');
+        $has_permission_view   = has_permission('tasks', '', 'view');
+
+        if (!$has_permission_view) {
+            $staff_id = get_staff_user_id();
+        } elseif ($this->input->post('member')) {
+            $staff_id = $this->input->post('member');
+        } else {
+            $staff_id = '';
+        }
+
+        $month = ($this->input->post('month') ? $this->input->post('month') : date('m'));
+        if ($this->input->post() && $this->input->post('month') == '') {
+            $month = '';
+        }
+
+        $status = $this->input->post('status');
+
+        $fetch_month_from = 'startdate';
+
+        $year       = ($this->input->post('year') ? $this->input->post('year') : date('Y'));
+        $project_id = $this->input->get('project_id');
+
+        for ($m = 1; $m <= 12; $m++) {
+            if ($month != '' && $month != $m) {
+                continue;
+            }
+
+            // Task rel_name
+            $sqlTasksSelect = '*,' . tasks_rel_name_select_query() . ' as rel_name';
+
+            // Task logged time
+            $selectLoggedTime = get_sql_calc_task_logged_time('tmp-task-id');
+            // Replace tmp-task-id to be the same like tblstafftasks.id
+            $selectLoggedTime = str_replace('tmp-task-id', 'tblstafftasks.id', $selectLoggedTime);
+
+            if (is_numeric($staff_id)) {
+                $selectLoggedTime .= ' AND staff_id=' . $staff_id;
+                $sqlTasksSelect .= ',(' . $selectLoggedTime . ')';
+            } else {
+                $sqlTasksSelect .= ',(' . $selectLoggedTime . ')';
+            }
+
+            $sqlTasksSelect .= ' as total_logged_time';
+
+            // Task checklist items
+            $sqlTasksSelect .= ',' . get_sql_select_task_total_checklist_items();
+
+            if (is_numeric($staff_id)) {
+                $sqlTasksSelect .= ',(SELECT COUNT(id) FROM tbltaskchecklists WHERE taskid=tblstafftasks.id AND finished=1 AND finished_from=' . $staff_id . ') as total_finished_checklist_items';
+            } else {
+                $sqlTasksSelect .= ',' . get_sql_select_task_total_finished_checklist_items();
+            }
+
+            // Task total comment and total files
+            $selectTotalComments = ',(SELECT COUNT(id) FROM tblstafftaskcomments WHERE taskid=tblstafftasks.id';
+            $selectTotalFiles    = ',(SELECT COUNT(id) FROM tblfiles WHERE rel_id=tblstafftasks.id AND rel_type="task"';
+
+            if (is_numeric($staff_id)) {
+                $sqlTasksSelect .= $selectTotalComments . ' AND staffid=' . $staff_id . ') as total_comments_staff';
+                $sqlTasksSelect .= $selectTotalFiles . ' AND staffid=' . $staff_id . ') as total_files_staff';
+            }
+
+            $sqlTasksSelect .= $selectTotalComments . ') as total_comments';
+            $sqlTasksSelect .= $selectTotalFiles . ') as total_files';
+
+            // Task assignees
+            $sqlTasksSelect .= ',' . get_sql_select_task_asignees_full_names() . ' as assignees' . ',' . get_sql_select_task_assignees_ids() . ' as assignees_ids';
+
+            $this->db->select($sqlTasksSelect);
+
+            $this->db->where('MONTH(' . $fetch_month_from . ')', $m);
+            $this->db->where('YEAR(' . $fetch_month_from . ')', $year);
+
+            if ($project_id && $project_id != '') {
+                $this->db->where('rel_id', $project_id);
+                $this->db->where('rel_type', 'project');
+            }
+
+            if (!$has_permission_view) {
+                $sqlWhereStaff = '(id IN (SELECT taskid FROM tblstafftaskassignees WHERE staffid=' . $staff_id . ')';
+
+                // User dont have permission for view but have for create
+                // Only show tasks createad by this user.
+                if ($has_permission_create) {
+                    $sqlWhereStaff .= ' OR addedfrom=' . get_staff_user_id();
+                }
+
+                $sqlWhereStaff .= ')';
+                $this->db->where($sqlWhereStaff);
+            } elseif ($has_permission_view) {
+                if (is_numeric($staff_id)) {
+                    $this->db->where('(id IN (SELECT taskid FROM tblstafftaskassignees WHERE staffid=' . $staff_id . '))');
+                }
+            }
+
+            if ($status) {
+                $this->db->where('status', $status);
+            }
+            $this->db->where('duedate_one', 1);
+            $this->db->order_by($fetch_month_from, 'ASC');
+            array_push($overview, $m);
+            $overview[$m] = $this->db->get('tblstafftasks')->result_array();
+        }
+
+        unset($overview[0]);
+
+        $overview = [
+            'staff_id' => $staff_id,
+            'detailed' => $overview,
+        ];
+
+        $data['members']  = $this->staff_model->get();
+        $data['overview'] = $overview['detailed'];
+        $data['years']    = $this->tasks_model->get_distinct_tasks_years(($this->input->post('month_from') ? $this->input->post('month_from') : 'startdate'));
+        $data['staff_id'] = $overview['staff_id'];
+        $data['title']    = _l('detailed_overview');
+        $this->load->view('admin/tasks/detailed_overview_due_date', $data);
     }
 }

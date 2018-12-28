@@ -3460,18 +3460,18 @@ $("body").on("loaded.bs.select change", "select.ajax-search", function (e) {
         ])
     }
     // debugger;
-    // var t=$(".table-tasks-due-date").length;
+    var other=$(".due-date-page").length;
     // var t1=$(".table-tasks").length;
-    if ((table_tasks_due_date = $(".table-tasks-due-date")).length) {
+    if ((table_tasks = $(".table-tasks")).length && other !=0) {
         var f, h = {};
         f = $("._hidden_inputs._filters._tasks_filters input"), $.each(f, function () {
             h[$(this).attr("name")] = '[name="' + $(this).attr("name") + '"]'
         });
         var v = [0],
             b = admin_url + "tasks/table_due_date";
-        $("body").hasClass("due-date-page") && (b += "?bulk_actions=true"), _table_api = initDataTable(table_tasks_due_date, b, v, v, h, [table_tasks.find("th.duedate").index(), "asc"]), _table_api && $("body").hasClass("dashboard") && _table_api.column(5).visible(!1, !1).column(6).visible(!1, !1).columns.adjust()
+        $("body").hasClass("due-date-page") && (b += "?bulk_actions=true"), _table_api = initDataTable(table_tasks, b, v, v, h, [table_tasks.find("th.duedate").index(), "asc"]), _table_api && $("body").hasClass("dashboard") && _table_api.column(5).visible(!1, !1).column(6).visible(!1, !1).columns.adjust()
     }
-    if ((table_tasks = $(".table-tasks")).length) {
+    if ((table_tasks = $(".table-tasks")).length && other ==0) {
         var f, h = {};
         f = $("._hidden_inputs._filters._tasks_filters input"), $.each(f, function () {
             h[$(this).attr("name")] = '[name="' + $(this).attr("name") + '"]'

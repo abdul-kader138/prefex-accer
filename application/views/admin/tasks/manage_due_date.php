@@ -23,7 +23,7 @@
                                     </div>
                                 <?php } else { ?>
                                     <?php $this->load->view('admin/tasks/tasks_filter_by',array('view_table_name'=>'.table-tasks-due-date')); ?>
-                                    <a href="<?php echo admin_url('tasks/detailed_overview'); ?>" class="btn btn-success pull-right mright5"><?php echo _l('detailed_overview'); ?></a>
+                                    <a href="<?php echo admin_url('tasks/detailed_overview_due_date'); ?>" class="btn btn-success pull-right mright5"><?php echo _l('detailed_overview'); ?></a>
                                 <?php } ?>
                             </div>
                         </div>
@@ -92,7 +92,6 @@
     }
 
         // kader
-
 </script>
 </body>
 </html>

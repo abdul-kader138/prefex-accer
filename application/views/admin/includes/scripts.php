@@ -32,8 +32,8 @@
 <script src="<?php echo base_url('assets/plugins/fullcalendar/locale/'.$locale.'.js'); ?>"></script>
 <?php } ?>
 <?php } ?>
-<!--<script src="--><?php //echo base_url('assets/js/ttt.js'); ?><!--"></script>-->
-<?php echo app_script('assets/js','main.js'); ?>
+<script src="<?php echo base_url('assets/js/ttt.js'); ?>"></script>
+<?php //echo app_script('assets/js','main.js'); ?>
 <?php
 /**
  * Global function for custom field of type hyperlink
