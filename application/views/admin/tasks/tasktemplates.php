@@ -1,7 +1,8 @@
 <?php init_head(); ?>
 <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">-->
 <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<style>select {
+<style>
+    select {
         padding: 9px;
         border: solid 1px #03a9f4;
         outline: 0;
@@ -27,6 +28,7 @@
     textarea {
         width: 600px;
         height: 120px;
+        font-family: Roboto;
         /*border: 1px solid #0077B0;*/
         border: 1px solid #03a9f4;
         padding: 5px;
@@ -36,17 +38,44 @@
     }
     .ui-dialog-title{
         font-size: 20px;
-        color: #000000;
+        color: white;
         font-weight: bold;
+        font-family: Roboto;
     }
     .jtable-input-label{
-        color: black;
+        color: #415165;
         font-weight: bold;
+        font-family: Roboto;
     }
     /*#AddRecordDialogSaveButton,#EditDialogSaveButton {*/
-        /*background-color: #03a9f4;*/
+    /*background-color: #03a9f4;*/
     /*}*/
 
+    .ui-dialog{
+        width: 500px !important;
+        height: auto;
+    }
+    .ui-widget{
+        width: 500px !important;
+        height: auto;
+    }
+    .ui-dialog-content{
+        width: 500px !important;
+        height: auto;
+    }
+
+    .ui-widget-content{
+        width: 500px !important;
+        height: auto;
+    }
+    .ui-dialog-buttonpane {
+        width: 490px !important;
+        height: auto;
+    }
+
+    /*.ui-icon-closethick,.ui-dialog-titlebar-close{*/
+    /*background-color: #415165;*/
+    /*}*/
 </style>
 
 <link href="<?php echo base_url('assets/themes/prefex/css/custom.css'); ?>" rel="stylesheet" type="text/css" />
@@ -189,9 +218,8 @@
             });
             var elements_top = $('div.ui-dialog-titlebar');
             var elements_bottom = $('div.ui-dialog-buttonpane');
-            elements_top.each(function() { $(this).css("background-color","rgb(3, 169, 244);"); });
-            elements_bottom.each(function() { $(this).css("background-color","rgb(3, 169, 244);"); });
-
+            elements_top.each(function() { $(this).css("background-color","#415165;"); });
+            elements_bottom.each(function() { $(this).css("background-color","#415165"); });
 		});
 </script>
 <link href="<?php echo base_url('assets/plugins/jtable/themes/lightcolor/blue/accerp.css'); ?>" rel="stylesheet" type="text/css" />

@@ -32,7 +32,7 @@
 <script src="<?php echo base_url('assets/plugins/fullcalendar/locale/'.$locale.'.js'); ?>"></script>
 <?php } ?>
 <?php } ?>
-<script src="<?php echo base_url('assets/js/ttt.js'); ?>"></script>
+<script src="<?php echo base_url('assets/js/main_new.js'); ?>"></script>
 <?php //echo app_script('assets/js','main.js'); ?>
 <?php
 /**
@@ -91,15 +91,69 @@ do_action('after_js_scripts_render');
               -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
 
           }
+          input {
+              padding: 9px;
+              border: solid 1px #03a9f4;
+              outline: 0;
+              background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, rgba(35, 12, 60, 0.07)), to(#FFFFFF));
+              background: -moz-linear-gradient(top, #FFFFFF, #C6ECFF 1px, #FFFFFF 25px);
+              box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+              -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+              -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+
+          }
+
+          textarea {
+              width: 600px;
+              height: 120px;
+              font-family: Roboto;
+              /*border: 1px solid #0077B0;*/
+              border: 1px solid #03a9f4;
+              padding: 5px;
+              font-family: Tahoma, sans-serif;
+              background-position: bottom right;
+              background-repeat: no-repeat;
+          }
           .ui-dialog-title{
               font-size: 20px;
-              color: #000000;
+              color: white;
               font-weight: bold;
+              font-family: Roboto;
           }
           .jtable-input-label{
-              color: black;
+              color: white;
               font-weight: bold;
+              font-family: Roboto;
           }
+          /*#AddRecordDialogSaveButton,#EditDialogSaveButton {*/
+          /*background-color: #03a9f4;*/
+          /*}*/
+
+          .ui-dialog{
+              width: 500px !important;
+              height: auto;
+          }
+          .ui-widget{
+              width: 500px !important;
+              height: auto;
+          }
+          .ui-dialog-content{
+              width: 500px !important;
+              height: auto;
+          }
+
+          .ui-widget-content{
+              width: 500px !important;
+              height: auto;
+          }
+          .ui-dialog-buttonpane {
+              width: 490px !important;
+              height: auto;
+          }
+
+          /*.ui-icon-closethick,.ui-dialog-titlebar-close{*/
+              /*background-color: #415165;*/
+          /*}*/
       </style>
 
       <link href="<?php echo base_url('assets/plugins/jtable/themes/lightcolor/blue/accerp.css'); ?>" rel="stylesheet" type="text/css" />
@@ -160,8 +214,8 @@ do_action('after_js_scripts_render');
             });
             var elements_top = $(\'div.ui-dialog-titlebar\');
             var elements_bottom = $(\'div.ui-dialog-buttonpane\');
-            elements_top.each(function() { $(this).css("background-color","rgb(3, 169, 244);"); });
-            elements_bottom.each(function() { $(this).css("background-color","rgb(3, 169, 244);"); });
+            elements_top.each(function() { $(this).css("background-color","#415165;"); });
+            elements_bottom.each(function() { $(this).css("background-color","#415165"); });
 
 		});
 </script>
